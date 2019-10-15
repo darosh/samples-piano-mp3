@@ -1,3 +1,10 @@
+# Audio
+mp3/
+audio/
+
+# IDE
+.idea
+
 # Logs
 logs
 *.log

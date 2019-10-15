@@ -1,0 +1,32 @@
+{
+  "name": "root",
+  "description": "Salamander Grand Piano V3 MP3 samples",
+  "version": "1.0.3",
+  "private": true,
+  "author": {
+    "email": "ensonador@gmail.com",
+    "name": "Jan Forst",
+    "url": "https://github.com/darosh"
+  },
+  "bugs": "https://github.com/darosh/samples-piano-mp3/issues",
+  "devDependencies": {
+    "bytes": "^3.1.0",
+    "lerna": "^3.17.0"
+  },
+  "homepage": "https://github.com/darosh/samples-piano-mp3",
+  "keywords": [
+    "audio",
+    "mp3",
+    "piano",
+    "samples"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darosh/samples-piano-mp3.git"
+  },
+  "scripts": {
+    "build": "node build/index.js mp3"
+  }
+}

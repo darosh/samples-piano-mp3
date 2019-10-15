@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Piano MP3 samples CDN test</title>
+</head>
+<body>
+<button onclick="load()">Test</button>
+<script src="https://unpkg.com/tone@14.1.18/build/Tone.js"></script>
+<script src="https://unpkg.com/@tonejs/piano@0.1.1/build/Piano.js"></script>
+<script>
+let piano
+
+function load () {
+  piano = piano || initialize()
+
+  piano.load().then(() => {
+    piano.keyDown('C4', '+0')
+    piano.keyDown('E4', '+0')
+    piano.keyDown('G4', '+0')
+    piano.keyUp('C4', '+1')
+    piano.keyUp('E4', '+1')
+    piano.keyUp('G4', '+1')
+  })
+}
+
+function toOgg (urls) {
+  Object.keys(urls).forEach(key => { urls[key] = encodeURIComponent(urls[key].replace('[mp3|ogg]', 'mp3').replace('s', '#')) })
+}
+
+function initialize () {
+  const piano = new Piano({ velocities: 1, release: true })
+  piano.toDestination()
+
+  console.log(piano)
+
+  piano._pedal.samples = 'https://unpkg.com/@audio-samples/piano-mp3-pedals@1.0.3/audio/'
+
+  piano._pedal._internalLoad = () => {
+    return new Promise((success) => {
+      this._buffers = new Tone.ToneAudioBuffers({
+        down1: 'pedalD1.mp3',
+        down2: 'pedalD2.mp3',
+        up1: 'pedalU1.mp3',
+        up2: 'pedalU2.mp3',
+      }, success, piano._pedal.samples)
+    })
+  }
+
+  piano._keybed.samples = 'https://unpkg.com/@audio-samples/piano-mp3-release@1.0.3/audio/'
+  toOgg(piano._keybed._urls)
+
+  piano._harmonics.samples = 'https://unpkg.com/@audio-samples/piano-mp3-harmonics@1.0.3/audio/'
+  toOgg(piano._harmonics._urls)
+
+  piano._strings._strings[0].samples = 'https://unpkg.com/@audio-samples/piano-mp3-velocity8@1.0.3/audio/'
+  toOgg(piano._strings._strings[0]._urls)
+
+  return piano
+}
+</script>
+</body>
+</html>
