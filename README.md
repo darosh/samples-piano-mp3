@@ -8,7 +8,7 @@ Salamander Grand Piano V3 MP3 samples
 
 ## Demo
 
-- simple CDN test with @tonejs/piano [darosh.github.io/samples-piano/](https://darosh.github.io/samples-piano/)
+- simple CDN test with @tonejs/piano [darosh.github.io/samples-piano-mp3/](https://darosh.github.io/samples-piano-mp3/)
 
 ## Packages
 
